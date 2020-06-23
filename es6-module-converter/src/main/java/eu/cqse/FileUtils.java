@@ -77,6 +77,7 @@ public class FileUtils {
 	}
 
 	public static void writeFileContent(File file, String content) throws IOException {
+	    // System.out.println(file.toPath().toString());
 		Files.asCharSink(file, Charsets.UTF_8).write(content);
 	}
 }

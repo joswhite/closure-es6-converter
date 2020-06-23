@@ -115,7 +115,7 @@ public class Es6ModuleMasterConverter {
 
 	public static void runTS() throws IOException, InterruptedException {
 		Runtime rt = Runtime.getRuntime();
-		String[] commands = {"../node_modules/.bin/tsc"};
+		String[] commands = {"../node_modules/.bin/tsc.cmd"};
 		Process proc = rt.exec(commands);
 
 		BufferedReader stdInput = new BufferedReader(new
@@ -157,7 +157,7 @@ public class Es6ModuleMasterConverter {
 
 			@Override
 			public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
-				File dest = new File(file.toFile().getAbsolutePath().replace("third_party/", "").replace("closure/goog/", ""));
+				File dest = new File(file.toFile().getAbsolutePath().replace("third_party\\", "").replace("closure\\goog\\", ""));
 				dest.getParentFile().mkdirs();
 				file.toFile().renameTo(dest);
 				return CONTINUE;

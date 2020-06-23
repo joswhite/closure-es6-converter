@@ -12,7 +12,10 @@ public class CyclicDependencyRemovalPass {
 	private final File googDir;
 
 	public CyclicDependencyRemovalPass(File closurePath) throws IOException {
-		googDir = closurePath;
+	    System.out.println(closurePath.toPath().toString());
+	    googDir = closurePath;
+	    //googDir = new File(closurePath, "closure/goog");
+
 
 		if (!googDir.isDirectory()) {
 			throw new IOException("Input dir not found");
@@ -31,7 +34,7 @@ public class CyclicDependencyRemovalPass {
 	}
 
 	private void merge(String finalName, String... fileNames) throws IOException {
-		List<File> files = Arrays.stream(fileNames).map(f -> new File(googDir, f)).collect(Collectors.toList());
+	    List<File> files = Arrays.stream(fileNames).map(f -> new File(googDir, f)).collect(Collectors.toList());
 		String content = files.stream().map(f -> {
 			if (!f.exists()) {
 				System.out.println("Cyclic dependency is not required and therefore skipped in the merge process: " + f.getName());
@@ -49,6 +52,7 @@ public class CyclicDependencyRemovalPass {
 		for (File file : files) {
 			file.delete();
 		}
+        //System.out.println(content);
 		FileUtils.writeFileContent(new File(googDir, finalName), content);
 	}
 }
