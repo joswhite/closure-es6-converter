@@ -1,7 +1,8 @@
 es6-module-converter/out
 clang/
-closure-library-converted/lib/
+closure-library-converted/lib
 node_modules/
 es6-module-converter/compiled.js
 /temp/
 /typings/
+.idea/
